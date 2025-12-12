@@ -1,0 +1,70 @@
+{% extends "tareas/base-tareas.html" %}
+
+{% load static %}
+
+{% block styles %}<link rel="stylesheet" href="{% static './detail.css'%}">{% endblock %} 
+
+{% block title%}Informacion de la tarea{% endblock %}
+
+{% block content%}
+    
+
+    <div class="content-detail">
+        <div class="separador"></div>
+        <div class="title-detail">
+            <h2>Detalles de la tarea: {{task.title}}</h2>
+            <img src="{% static 'img/detalle.png' %}" class="img-detail">
+        </div>
+
+        <div class="separador"></div>
+        <div class="content-table">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{task.title}}</td>
+                    </tr>
+                    <tr>
+                        <td>Descripcion</td>
+                        <td>{{task.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Estado</td>
+                        <td>{{task.status}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Termino</td>
+                        <td>{{task.due_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Usuarios asignados</td>
+                        <td>
+                            {% for user in usuarios %}
+                                <p>{{user.username}}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Creador de la tarea</td>
+                        <td>{{task.creator}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {% if request.user != task.creator and not is_manager%}
+                <div class="separador"></div>
+                <h3 class="info-detail"> No puedes eliminar o editar esta tarea porque no tienes los permisos requeridos. </h3>
+            {% endif %}
+            <a class="button-detail" href="{% url 'dashboard' %}">Volver al inicio</a>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'tareas/base-tareas.html' %}
+
+{% load static %}
+
+{% block title %}Panel Principal{% endblock %}
+
+{% block content %}
+    <div class="content-dashboard">
+        <div class="separador"></div>
+        <div class="content-usuario">
+            <img class="logo-usuario" src="{% static 'img/perfil.png' %}">
+            <h2>¡Bienvenido, {{ nombre_usuario }}!</h2>
+        </div>
+
+        <div class="usuario_info">
+            <p>Has accedido correctamente a tu panel de control.</p>
+            <div class="separador"></div>
+            <a href="{% url 'create' %}">Crear tarea</a>
+        </div>
+        
+        <div class="content_main">
+            <div class="content-filters">
+                <form method="get">
+                    <label>FILTROS:</label>
+                    <div>
+
+                        <label>Estado:</label>
+                        <select name="status">
+                            <option value="">-- Estado --</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="terminada">Terminada</option>
+
+                        </select>
+                    
+                    </div>
+
+                    <div>
+
+                    <label>Fecha:</label>
+                    <select name="due">
+                        <option value="">-- Fechas --</option>
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta semana</option>
+                        <option value="late">Atrasadas</option>
+                    </select>
+
+                    </div>
+
+                    <div>
+                    {%if is_manager %}
+                        <label>Tarea asignada a:</a>
+                        <select name="assigned_to">
+                            <option value="">-- Todos --</option>
+                            {% for user in all_users %}
+                                <option value="{{ user.id }}" > {{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+
+                    <button type="submit">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="separador"></div>
+            <div class="content-table">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Tarea</th>
+                            <th>Descripcion</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.title }}</td>
+                            <td>{{ task.description }}</td>
+                            <td class="task">
+                            {{ task.status }}
+                            {% if task.status == "pendiente"%}
+                            
+                                <a class="incomplete" href="{% url 'task_status' task.id%}">Marcar como completa</a>
+                            
+                            {%else%}
+                    
+                                <a class="complete" href="{% url 'task_status' task.id%}">Marcar como imcompleta</a>
+                
+                            {% endif %}
+                            </td>
+                            <td class="actions">
+                                {% if request.user == task.creator or is_manager %}
+                                    <a class="green" href="{% url 'update' task.id%}">Editar</a>
+                                    <a class="red" href="{% url 'delete' task.id%}">Eliminar</a>
+                                {% endif %}
+                                <a class="yellow" href="{% url 'detail' task.id%}">Detalles</a> 
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if tasks|length == 0 %}
+                <p>No hay tareas asignadas.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

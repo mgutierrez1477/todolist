@@ -1,0 +1,21 @@
+{% extends "tareas/base-tareas.html" %}
+
+{% load static %}
+
+{% block styles%} <link rel="stylesheet" href="{% static './create.css'%}"> {% endblock %}
+{% block title%}Crear tarea{% endblock %}
+
+{% block content %}
+    <div class="form-create">
+        <div class="title">
+            <h2>Crear tarea</h2>
+            <img src="{% static 'img/create.png' %}">
+        </div>
+        <form action="{% url 'create' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Registrar tarea">
+            <a href="{% url 'dashboard' %}">Volver al inicio</a>
+        </form>
+    </div>
+{% endblock %}

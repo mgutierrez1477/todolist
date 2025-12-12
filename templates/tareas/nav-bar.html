@@ -1,0 +1,16 @@
+{% load static %}
+
+<nav>
+    <div class="nav-relleno"></div>
+
+    <div class="nav-items">
+        <img src="{% static 'img/login.png' %}">
+        <h2>TODO-LIST APP</h2>
+    </div>
+    
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Cerrar Sesión </button>
+    </form>
+</nav>
+

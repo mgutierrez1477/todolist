@@ -1,0 +1,107 @@
+/* ===== FORM CREATE — Estilo profesional ===== */
+:root {
+    --color-principal : white;
+    --color-secundario : #0886FF;
+    --color-terciario : #eff0f4;
+
+    --edit : #08FF08;
+    --delete : #FE080A;
+    --show : #FEF108;
+
+    --fuente : 'Roboto', sans-serif
+}
+
+
+.form-create {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: var(--color-principal);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Formulario */
+.form-create form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Etiquetas */
+.form-create label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Inputs */
+.form-create input,
+.form-create select,
+.form-create textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+    font-size: 15px;
+}
+
+.form-create textarea {
+    height: 120px;
+}
+
+.form-create input:focus,
+.form-create select:focus,
+.form-create textarea:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(74,126,252,0.2);
+}
+
+/* Botón */
+.form-create input[type="submit"] {
+    background: var(--color-secundario);
+    color: var(--color-principal);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: background .25s;
+}
+
+.form-create input[type="submit"]:hover {
+    background: #3b68d6;
+}
+
+/* Link de volver */
+.form-create a {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: #e4e4e4;
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+    transition: background .25s;
+}
+
+.form-create a:hover {
+    background: #d1d1d1;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .form-create {
+        margin: 20px;
+        padding: 20px;
+        width: 90%;
+    }
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

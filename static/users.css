@@ -1,0 +1,188 @@
+/* ESTILOS GENERALES */
+:root {
+    --color-principal : #FFFFFF;
+    --color-secundario : #0886FF;
+    --color-terciario : white;
+
+    --edit : #08FF08;
+    --delete : #FE080A;
+    --show : #FEF108;
+
+    --fuente : 'Roboto', sans-serif
+}
+
+/* Reseteo muy básico para eliminar márgenes y paddings predeterminados */
+*, *::before, *::after {
+    box-sizing: border-box; /* Fundamental para control de dimensiones */
+}
+
+body, h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente);
+
+}
+
+body {
+    min-height: 100vh;
+    
+    /* Importante: Un color ligeramente transparente para que el fondo del body sea visible */
+    background-color: rgba(126, 8, 8, 0.2); 
+    
+    /* Asegura que no estorbe el contenido */
+    z-index: -1; 
+
+}
+
+ul[role='list'], ol[role='list'] {
+    list-style: none;
+}
+
+
+/* ESTILOS DE FORMULARIO */
+
+.content-user {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+}
+
+.form, .img-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (max-width: 1000px){
+    .content-user {
+        flex-direction: column !important;
+        height: auto !important;
+    }
+
+    .form {
+        width: 100% !important;
+    }
+
+    .img-form,
+    .img-form * {
+        display: none !important;
+    }
+}
+
+.form-block {
+    background-color: white;
+    height: 85vh;
+    width: 70%;
+    border-radius: 8px ;
+    text-align:center ;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    padding-top: 15px;
+}
+
+.form-block form p {
+    padding-top: 20px;
+}
+
+.form-block form label {
+    display: block; /* La etiqueta ocupa su propia línea */
+    margin-bottom: 8px;
+    font-weight: 600; /* Negrita */
+    color: #333333;
+    font-size: 1.2rem;
+}
+
+.form-block form input[type="text"],
+.form-block form input[type="password"],
+.form-block form input[type="email"] {
+    width: 90%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: border-color 0.3s;
+}
+
+.form-block form input[type="text"]:focus,
+.form-block form input[type="password"]:focus,
+.form-block form input[type="email"]:focus {
+    border-color: #007bff; 
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.form-block button[type="submit"],
+.form-block input[type="submit"] {
+    width: 80%;
+    padding: 15px;
+    
+    /* Estilo primario */
+    background-color: #007bff; 
+    color: white;
+    
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 15px 0;
+}
+
+/* Efecto visual al pasar el ratón (Hover) */
+.form-block button[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+
+/* ESTILOS IMAGEEEEEN */
+
+.img-form {
+    /* Mantiene el tamaño que definiste (ej. 50% de ancho, 100vh de alto) */
+    width: 50%; 
+    height: 100vh; 
+    
+    /* 1. Posición relativa: Necesaria para que los hijos absolutos se posicionen respecto a este div */
+    position: relative; 
+    
+    /* 2. Flexbox para centrar el <h1> */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    
+    /* 3. Asegura que el texto y la imagen no se salgan del 50% de ancho */
+    overflow: hidden; 
+}
+
+.img-form img {
+    /* Posición absoluta: Permite superponerla y dimensionarla fácilmente */
+    position: absolute; 
+    
+    /* Cubre el 100% del contenedor padre */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    
+    /* object-fit: cover es la clave: Asegura que la imagen cubra todo el espacio sin distorsionarse, 
+       recortando las partes sobrantes si es necesario. */
+    object-fit: cover; 
+    
+    /* Opcional: Oscurecer la imagen para que el texto resalte mejor */
+    opacity: 0.8;
+}
+
+.img-form h1 {
+    /* 1. Asegura que el título siempre esté encima de la imagen */
+    position: relative; 
+    z-index: 10; /* Le da prioridad de apilamiento */
+    
+    /* 2. Estilos para visibilidad */
+    color: white; /* Color claro para contrastar con la imagen oscura */
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para que el texto destaque */
+}

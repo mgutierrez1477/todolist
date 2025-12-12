@@ -1,0 +1,36 @@
+{% extends "usuarios/base-user.html" %}
+
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock%}
+
+{% block content%}
+    <div class="content-user">
+        <div class="form">
+            <div class="form-block">
+                
+                <h2>Bienvenido <br> Inicia Sesion</h2>
+                <br>
+                <img src="{% static 'img/login.png' %}">
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }} 
+                    <button type="submit">Acceder</button>
+                </form>
+
+                 <p>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></p>
+               
+            </div>
+        </div>
+
+        <div class="img-form">
+                <h1>Todo List Web</h1>
+                
+                <img src="{% static 'img/1.avif' %}" alt="Logo">
+        </div>
+    </div>
+
+{% endblock %}
