@@ -77,7 +77,7 @@ ul[role='list'], ol[role='list'] {
 .form-block {
     background-color: white;
     height: 85vh;
-    width: 70%;
+    width: 80%;
     border-radius: 8px ;
     text-align:center ;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);

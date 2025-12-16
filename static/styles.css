@@ -87,6 +87,12 @@ nav form button:hover {
 
 }
 
+@media (max-width: 600px){
+    .titulo-nav h2 {
+        font-size: 15px;
+    }
+}
+
 /* DASHBOARD -------------------------------------------------------- */
 
 .content-dashboard{
